@@ -12,6 +12,6 @@ eg: T5 Summarization (Abstractive Approach)
 🔹 Project Explanation
 
 1. Handles multiple input types: Extracts text from .txt, .pdf, and website URLs.
-2. Uses pdf2image & pytesseract: Converts PDFs into images and extracts text using OCR.
+2. Uses pdf2image & pytesseract: Converts PDFs into images and extracts text using OCR. Output is stored in JSON format.
 3. Pretrained T5 model and Bert Model: Uses T5 Transformer (t5-base) for abstractive summarization (paraphrasing & rewording) and BERT Extractive Summarizer selects the most important sentences instead of paraphrasing.
 4. Fuzzy Matching (find_near_matches): Finds approximate matches of summary sentences in the original text.
