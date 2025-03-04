@@ -4,10 +4,10 @@ A Text Summarizer condenses long pieces of text into shorter, more meaningful su
 🔹 Types of Text Summarization
 
 Extractive Summarization – Selects the most important sentences from the original text (BERT-based).
-eg: T5 Summarization (Abstractive Approach)
+eg: BERT Summarization (Extractive Approach)
 
 Abstractive Summarization – Generates new sentences by paraphrasing the original text (T5-based).
-eg: BERT Summarization (Extractive Approach)
+eg: T5 Summarization (Abstractive Approach)
 
 🔹 Project Explanation
 
