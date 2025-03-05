@@ -11,7 +11,6 @@ from transformers import pipeline
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def authenticate_gmail():
-    """Authenticates and returns a Gmail service instance."""
     creds = None
     token_file = "token.json"
     
@@ -31,7 +30,6 @@ def authenticate_gmail():
     return build('gmail', 'v1', credentials=creds)
 
 def get_recent_emails(service, num_emails=2):  # Limit to 2 emails
-    """Fetches the most recent emails from the Gmail inbox."""
     results = service.users().messages().list(userId='me', maxResults=num_emails, labelIds=['INBOX']).execute()
     messages = results.get('messages', [])
     
@@ -54,7 +52,6 @@ def get_recent_emails(service, num_emails=2):  # Limit to 2 emails
     return emails
 
 def extract_email_body(email_data):
-    """Extracts and decodes the email body."""
     parts = email_data['payload'].get('parts', [])
     
     if not parts:
@@ -68,13 +65,11 @@ def extract_email_body(email_data):
     return "No Content Available"
 
 def summarize_text_t5(text):
-    """Summarizes the text using a pre-trained T5 Transformer model."""
     summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="pt")
     summary_output = summarizer(text, min_length=5, max_length=500, do_sample=False)
     return summary_output[0]['summary_text']
 
 def generate_summary_json(email_data):
-    """Generates JSON output with email subjects, content, and summaries."""
     output_json = {}
 
     for email_id, data in email_data.items():
@@ -90,7 +85,6 @@ def generate_summary_json(email_data):
     return output_json
 
 def save_json_to_file(json_data, filename="Gmail_T5_Summary.json"):
-    """Saves the summarized emails to a JSON file."""
     with open(filename, "w", encoding="utf-8") as json_file:
         json.dump(json_data, json_file, indent=4)
     print(f"Summarized emails saved in {filename}")
